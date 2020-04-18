@@ -1,0 +1,12 @@
+body {
+    background: url('../images/cool-background.png') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+.damn{
+  border-radius: 1px !important;
+  border-color: black !important;
+  display: inline-block !important;
+}
