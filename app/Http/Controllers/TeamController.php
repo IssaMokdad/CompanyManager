@@ -8,7 +8,7 @@ use Auth;
 use Validator;
 class TeamController extends Controller
 {
-    
+    //kkkkkkkkk
 
     public function getTeams(Request $request){
         $teams = Team::where('department_id', $request->input('department_id'))->get();
