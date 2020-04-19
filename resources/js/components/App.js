@@ -19,16 +19,31 @@ class App extends React.Component {
             role:'',
             usersGroupedByDepartment: '',
             users: '',
+            first_name:'',
+            last_name:'',
+            role_type:''
         }
         this.fetchRequest = this.fetchRequest.bind(this)
         this.handleChangeExpensesGroupedByCategory=this.handleChangeExpensesGroupedByCategory.bind(this)
         this.initializeData = this.initializeData.bind(this)
         this.getDepartments = this.getDepartments.bind(this)
         this.getUsers = this.getUsers.bind(this)
+        this.getUserData = this.getUserData.bind(this)
         this.getRoles = this.getRoles.bind(this)
         this.getExpensesGroupedByCategory = this.getExpensesGroupedByCategory.bind(this)
     }
-
+    getUserData(){
+        this.fetchRequest('getuserdata', 'get').then(data => {
+            let first_name = data[0].first_name
+            let last_name = data[0].last_name
+            let role_type = data[0].role_type
+            this.setState({
+                first_name: first_name,
+                last_name: last_name,
+                role_type:role_type,
+            })
+        })
+    }
     getDepartments() {
         this.fetchRequest('getdepartments', 'get').then(data => {
             this.setState({
@@ -69,6 +84,7 @@ class App extends React.Component {
         this.getDepartments()
         this.getUsers()
         this.getRoles()
+        this.getUserData()  
     }
 
     fetchRequest(url, method, data = null) {
@@ -88,10 +104,12 @@ class App extends React.Component {
     componentDidMount() {
         this.initializeData()
     }
+
     render() {
+        console.log(this.state.first_name)
         return (
             <Fragment>
-                <NavBar >
+                <NavBar role_type={this.state.role_type} first_name={this.state.first_name} last_name={this.state.last_name} >
                     <Logout />
                 </NavBar>
                 <AddUserForm  initializeData={this.initializeData} fetchRequest={this.fetchRequest} role={this.state.role} department={this.state.department} />

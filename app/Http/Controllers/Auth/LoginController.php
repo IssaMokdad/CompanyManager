@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -17,7 +17,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
 
@@ -26,7 +26,28 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo()
+    {
+
+        // User role
+        $role = Auth::user()->role_id;
+
+        // Check user role
+        switch ($role) {
+            case '1':
+                return '/dashboard';
+                break;
+            case '2':
+                return '/department';
+                break;
+            case '3':
+                return '/team';
+                break;
+            case '4':
+                return '/employee';
+                break;
+        }
+    }
 
     /**
      * Create a new controller instance.

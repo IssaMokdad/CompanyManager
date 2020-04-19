@@ -106385,25 +106385,46 @@ var App = /*#__PURE__*/function (_React$Component) {
       department: '',
       role: '',
       usersGroupedByDepartment: '',
-      users: ''
+      users: '',
+      first_name: '',
+      last_name: '',
+      role_type: ''
     };
     _this.fetchRequest = _this.fetchRequest.bind(_assertThisInitialized(_this));
     _this.handleChangeExpensesGroupedByCategory = _this.handleChangeExpensesGroupedByCategory.bind(_assertThisInitialized(_this));
     _this.initializeData = _this.initializeData.bind(_assertThisInitialized(_this));
     _this.getDepartments = _this.getDepartments.bind(_assertThisInitialized(_this));
     _this.getUsers = _this.getUsers.bind(_assertThisInitialized(_this));
+    _this.getUserData = _this.getUserData.bind(_assertThisInitialized(_this));
     _this.getRoles = _this.getRoles.bind(_assertThisInitialized(_this));
     _this.getExpensesGroupedByCategory = _this.getExpensesGroupedByCategory.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
-    key: "getDepartments",
-    value: function getDepartments() {
+    key: "getUserData",
+    value: function getUserData() {
       var _this2 = this;
 
-      this.fetchRequest('getdepartments', 'get').then(function (data) {
+      this.fetchRequest('getuserdata', 'get').then(function (data) {
+        var first_name = data[0].first_name;
+        var last_name = data[0].last_name;
+        var role_type = data[0].role_type;
+
         _this2.setState({
+          first_name: first_name,
+          last_name: last_name,
+          role_type: role_type
+        });
+      });
+    }
+  }, {
+    key: "getDepartments",
+    value: function getDepartments() {
+      var _this3 = this;
+
+      this.fetchRequest('getdepartments', 'get').then(function (data) {
+        _this3.setState({
           department: data
         });
       });
@@ -106411,11 +106432,11 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getUsers",
     value: function getUsers() {
-      var _this3 = this;
+      var _this4 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       this.fetchRequest('getusers?page=' + page + '', 'get').then(function (data) {
-        _this3.setState({
+        _this4.setState({
           users: data
         });
       });
@@ -106423,10 +106444,10 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getRoles",
     value: function getRoles() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.fetchRequest('getroles', 'get').then(function (data) {
-        _this4.setState({
+        _this5.setState({
           role: data
         });
       });
@@ -106441,10 +106462,10 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getExpensesGroupedByCategory",
     value: function getExpensesGroupedByCategory(data) {
-      var _this5 = this;
+      var _this6 = this;
 
       this.fetchRequest('getExpensesGroupedByCategory', 'get').then(function (data) {
-        _this5.setState({
+        _this6.setState({
           expensesGroupedByCategory: data
         });
       });
@@ -106456,6 +106477,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       this.getDepartments();
       this.getUsers();
       this.getRoles();
+      this.getUserData();
     }
   }, {
     key: "fetchRequest",
@@ -106486,7 +106508,12 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavBar__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logout__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddUserForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      console.log(this.state.first_name);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        role_type: this.state.role_type,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logout__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddUserForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
         initializeData: this.initializeData,
         fetchRequest: this.fetchRequest,
         role: this.state.role,
@@ -108190,7 +108217,7 @@ function NavBar(props) {
     className: "navbar navbar-expand-sm bg-primary navbar-dark fixed-top"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "navbar-brand"
-  }, props.first_name, " ", props.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, props.first_name, " ", props.last_name, " : ", props.role_type), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "navbar-nav ml-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"

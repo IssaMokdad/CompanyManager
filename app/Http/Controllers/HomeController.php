@@ -14,6 +14,11 @@ class HomeController extends Controller
     public function __construct()
     {
     $this->middleware('auth');
+    
+    $this->middleware('check')->only('indexOwner');
+    $this->middleware('checkDM')->only('indexDepartment');
+    $this->middleware('checkTM')->only('indexTeam');
+    $this->middleware('checkE')->only('indexEmployee');
     }
 
     /**
@@ -21,8 +26,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function indexOwner()
     {
-        return view('adminhome');
+        return view('dashboard');
+    }
+
+    public function indexDepartment()
+    {
+        return view('department');
+    }
+
+    public function indexTeam()
+    {
+        return view('team');
+    }
+
+    public function indexEmployee()
+    {
+        return view('employee');
     }
 }

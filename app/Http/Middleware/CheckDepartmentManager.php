@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-class CheckAdmin
+class CheckDepartmentManager
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,11 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role_id==1){
+        if(Auth::user()->role_id===2){
             return $next($request);
         }
         else{
-            abort(404);
+            abort(403);
         }
         
     }

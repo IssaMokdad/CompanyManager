@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +23,16 @@ class UsersController extends Controller
             ->select('department_name','users.department_id','role_type','role_id','teams.team_name', 'users.team_id','users.email', 'users.first_name', 'users.id', 'users.last_name')
             ->where('users.company_id', Auth::user()->company_id)
             ->paginate(6);
+        return response()->json($users);
+    }
+
+    public function getUserData()
+    {
+        $users = DB::table('users')
+            ->where('users.id', Auth::id())
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
+            ->select('users.first_name', 'roles.role_type', 'users.last_name')
+            ->get();
         return response()->json($users);
     }
 
