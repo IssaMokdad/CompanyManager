@@ -106197,7 +106197,8 @@ var AddUserForm = /*#__PURE__*/function (_React$Component) {
             });
 
             _this3.setState({
-              image: '',
+              department_id: '',
+              team_id: '',
               password: '',
               password2: '',
               last_name: '',
@@ -106789,7 +106790,7 @@ var DeleteDepartmentForm = /*#__PURE__*/function (_React$Component) {
       }).then(function (willDelete) {
         if (willDelete) {
           var data = {
-            'id': _this2.state.department_id
+            'department_id': _this2.state.department_id
           };
 
           _this2.props.fetchRequest('deletedepartment', 'POST', data).then(function (data) {
@@ -106842,6 +106843,202 @@ var DeleteDepartmentForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (DeleteDepartmentForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteTeamForm.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/DeleteTeamForm.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _OptionsInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OptionsInput */ "./resources/js/components/OptionsInput.js");
+/* harmony import */ var _ModalButtonSubmit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModalButtonSubmit */ "./resources/js/components/ModalButtonSubmit.js");
+/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Input */ "./resources/js/components/Input.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var DeleteTeamForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(DeleteTeamForm, _React$Component);
+
+  var _super = _createSuper(DeleteTeamForm);
+
+  function DeleteTeamForm(props) {
+    var _this;
+
+    _classCallCheck(this, DeleteTeamForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      department: '',
+      teamGroup: '',
+      department_id: '',
+      team: '',
+      team_id: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.getTeams = _this.getTeams.bind(_assertThisInitialized(_this));
+    _this.handleChangeDepartment = _this.handleChangeDepartment.bind(_assertThisInitialized(_this));
+    _this.handleChangeTeam = _this.handleChangeTeam.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(DeleteTeamForm, [{
+    key: "getTeams",
+    value: function getTeams(department_id) {
+      var _this2 = this;
+
+      this.props.fetchRequest('getteams?department_id=' + department_id + '', 'get').then(function (data) {
+        _this2.setState({
+          teamGroup: data
+        });
+      });
+    }
+  }, {
+    key: "handleChangeDepartment",
+    value: function handleChangeDepartment(event) {
+      this.setState({
+        department: event.value,
+        department_id: event.id
+      }, function () {
+        this.getTeams(this.state.department_id);
+      });
+    }
+  }, {
+    key: "handleChangeTeam",
+    value: function handleChangeTeam(event) {
+      this.setState({
+        team: event.value,
+        team_id: event.id
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      var _this3 = this;
+
+      event.preventDefault();
+      var id = event.target.id;
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this expense!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          var data = {
+            'team_id': _this3.state.team_id,
+            'department_id': _this3.state.department_id
+          };
+
+          _this3.props.fetchRequest('deleteteam', 'POST', data).then(function (data) {
+            if (data.success == 'success') {
+              swal({
+                title: "Deleted Successfully!",
+                icon: "success"
+              });
+
+              _this3.setState({
+                department: '',
+                department_id: '',
+                team_id: '',
+                team: '',
+                teamGroup: ''
+              });
+
+              _this3.props.initializeData();
+
+              document.getElementById(id).reset();
+            } else {
+              swal({
+                title: "Something went wrong, try again!"
+              });
+            }
+          });
+        } else {
+          swal("Your team is safe!");
+        }
+      }); // this.props.fetchRequest('deleteteam', 'POST', data).then(data => {
+      //     if (data.success == 'success') {
+      //         swal({
+      //             title: "Deleted Successfully!",
+      //             icon: "success",
+      //         });
+      //         this.setState({
+      //             department: '', department_id: '', team_id: '', team: '', teamGroup: ''
+      //         })
+      //         this.props.initializeData()
+      //         document.getElementById(id).reset()
+      //     }
+      //     else {
+      //         swal({
+      //             title: "Something went wrong, try again!",
+      //         });
+      //     }
+      // })
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "deleteteamform",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OptionsInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        nameDatabaseDescription: "department_name",
+        unitDescription: "department",
+        unitDescriptionPlural: "departments",
+        classes: "md-form mb-3",
+        handleChange: this.handleChangeDepartment,
+        selected: this.state.department,
+        unit: this.props.department
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OptionsInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        nameDatabaseDescription: "team_name",
+        unitDescription: "team",
+        unitDescriptionPlural: "teams",
+        classes: "md-form mb-3",
+        handleChange: this.handleChangeTeam,
+        selected: this.state.team,
+        unit: this.state.teamGroup
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ModalButtonSubmit__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        buttonTitle: "Delete Team"
+      }));
+    }
+  }]);
+
+  return DeleteTeamForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (DeleteTeamForm);
 
 /***/ }),
 
@@ -107075,6 +107272,189 @@ var EditDepartmentForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (EditDepartmentForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/EditTeamForm.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/EditTeamForm.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _OptionsInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OptionsInput */ "./resources/js/components/OptionsInput.js");
+/* harmony import */ var _ModalButtonSubmit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModalButtonSubmit */ "./resources/js/components/ModalButtonSubmit.js");
+/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Input */ "./resources/js/components/Input.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var EditTeamForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(EditTeamForm, _React$Component);
+
+  var _super = _createSuper(EditTeamForm);
+
+  function EditTeamForm(props) {
+    var _this;
+
+    _classCallCheck(this, EditTeamForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      department: '',
+      department_id: '',
+      team: '',
+      teamGroup: '',
+      team_id: '',
+      team_input: ''
+    };
+    _this.getTeams = _this.getTeams.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleChangeTeam = _this.handleChangeTeam.bind(_assertThisInitialized(_this));
+    _this.handleChangeTeamInput = _this.handleChangeTeamInput.bind(_assertThisInitialized(_this));
+    _this.handleChangeDepartment = _this.handleChangeDepartment.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(EditTeamForm, [{
+    key: "handleChangeTeam",
+    value: function handleChangeTeam(event) {
+      this.setState({
+        team: event.value,
+        team_id: event.id
+      });
+    }
+  }, {
+    key: "handleChangeTeamInput",
+    value: function handleChangeTeamInput(event) {
+      this.setState({
+        team_input: event
+      });
+    }
+  }, {
+    key: "getTeams",
+    value: function getTeams(department_id) {
+      var _this2 = this;
+
+      this.props.fetchRequest('getteams?department_id=' + department_id + '', 'get').then(function (data) {
+        _this2.setState({
+          teamGroup: data
+        });
+      });
+    }
+  }, {
+    key: "handleChangeDepartment",
+    value: function handleChangeDepartment(event) {
+      this.setState({
+        department: event.value,
+        department_id: event.id
+      }, function () {
+        this.getTeams(this.state.department_id);
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      var _this3 = this;
+
+      event.preventDefault();
+      var id = event.target.id;
+      var data = {
+        'team_name': this.state.team_input,
+        'department_id': this.state.department_id,
+        'id': this.state.team_id
+      };
+      this.props.fetchRequest('editteam', 'POST', data).then(function (data) {
+        if (data.success == 'success') {
+          swal({
+            title: "Edited Successfully!",
+            icon: "success"
+          });
+
+          _this3.setState({
+            department: '',
+            teamGroup: '',
+            team_input: '',
+            department_id: '',
+            department_input: '',
+            team_id: '',
+            team: ''
+          });
+
+          _this3.props.initializeData();
+
+          document.getElementById(id).reset();
+        } else {
+          swal({
+            title: "Something went wrong, try again!"
+          });
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "editteamform",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OptionsInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        nameDatabaseDescription: "department_name",
+        unitDescription: "department",
+        unitDescriptionPlural: "departments",
+        classes: "md-form mb-3",
+        handleChange: this.handleChangeDepartment,
+        selected: this.state.department,
+        unit: this.props.department
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OptionsInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        nameDatabaseDescription: "team_name",
+        unitDescription: "team",
+        unitDescriptionPlural: "teams",
+        classes: "md-form mb-3",
+        handleChange: this.handleChangeTeam,
+        selected: this.state.team,
+        unit: this.state.teamGroup
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        type: "text",
+        placeholder: "New team name",
+        handleChange: this.handleChangeTeamInput,
+        value: this.state.team_input
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ModalButtonSubmit__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        buttonTitle: "Edit Team"
+      }));
+    }
+  }]);
+
+  return EditTeamForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (EditTeamForm);
 
 /***/ }),
 
@@ -108375,9 +108755,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ModalHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalHeader */ "./resources/js/components/ModalHeader.js");
-/* harmony import */ var _ModalButtonSubmit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModalButtonSubmit */ "./resources/js/components/ModalButtonSubmit.js");
-/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Modal */ "./resources/js/components/Modal.js");
-/* harmony import */ var _AddTeamForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddTeamForm */ "./resources/js/components/AddTeamForm.js");
+/* harmony import */ var _EditTeamForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EditTeamForm */ "./resources/js/components/EditTeamForm.js");
+/* harmony import */ var _DeleteTeamForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DeleteTeamForm */ "./resources/js/components/DeleteTeamForm.js");
+/* harmony import */ var _ModalButtonSubmit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ModalButtonSubmit */ "./resources/js/components/ModalButtonSubmit.js");
+/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Modal */ "./resources/js/components/Modal.js");
+/* harmony import */ var _AddTeamForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AddTeamForm */ "./resources/js/components/AddTeamForm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -108403,8 +108785,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // import EditTeamForm from './EditTeamForm';
-// import DeleteTeamForm from './DeleteTeamForm';
+
+
 
 
 
@@ -108422,13 +108804,21 @@ var TeamBoard = /*#__PURE__*/function (_React$Component) {
   _createClass(TeamBoard, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modal__WEBPACK_IMPORTED_MODULE_5__["default"], {
         classes: "modal-dialog modal-lg",
         id: "teamform",
         modalHeader: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ModalHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {
           title: "Team Form"
         })
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddTeamForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddTeamForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        department: this.props.department,
+        initializeData: this.props.initializeData,
+        fetchRequest: this.props.fetchRequest
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditTeamForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        department: this.props.department,
+        initializeData: this.props.initializeData,
+        fetchRequest: this.props.fetchRequest
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DeleteTeamForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
         department: this.props.department,
         initializeData: this.props.initializeData,
         fetchRequest: this.props.fetchRequest

@@ -75,13 +75,6 @@ class RegisterController extends Controller
         ]);
 
         $company = $company->fresh();
-
-        $role = Role::create([
-            'role_type' => 'Owner',
-            'company_id'=> $company->id
-        ]);
-
-        $role = $role->fresh();
         
         return User::create([
             'first_name' => $data['first_name'],
@@ -89,7 +82,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'company_id'=>$company->id,
-            'role_id'=> $role->id
+            'role_id'=> 1
         ]);
 
     }

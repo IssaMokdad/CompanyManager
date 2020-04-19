@@ -9,6 +9,11 @@ use DB;
 use Validator;
 class DepartmentController extends Controller
 {
+    public function __construct()
+    {
+    $this->middleware('auth');
+    $this->middleware('test')->except('addDepartment','getDepartments');
+    }
     public function getDepartments(Request $request){
         $departments = Department::where('company_id', Auth::user()->company_id)->get();
         return response()->json($departments);
@@ -67,7 +72,7 @@ class DepartmentController extends Controller
         $data = $request->json()->all();
 
         $validator = Validator::make($data, [
-            'id' => ['required', 'integer'],
+            'department_id' => ['required', 'integer'],
         ]);
 
         if ($validator->fails()) {
@@ -77,7 +82,7 @@ class DepartmentController extends Controller
         }
 
 
-        $department = Department::where('id', $data['id'])
+        $department = Department::where('id', $data['department_id'])
         ->where('company_id', Auth::user()->company_id)
         ->delete();
         if ($department) {

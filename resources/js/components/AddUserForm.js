@@ -72,7 +72,7 @@ class AddUserForm extends React.Component {
                             icon: "success",
                         });
                         this.setState({
-                            image: '', password: '', password2: '', last_name: '', email: '', role_type: '', first_name: '', department: '', team: ''
+                            department_id: '', team_id: '',password: '', password2: '', last_name: '', email: '', role_type: '', first_name: '', department: '', team: ''
                         })
     
                         // this.fileInput.current.value = null

@@ -25,8 +25,10 @@ Route::post('/adddepartment', 'DepartmentController@addDepartment')->name('addde
 Route::post('/addteam', 'TeamController@addTeam')->name('addteams')->middleware('check');
 Route::post('/deletedepartment', 'DepartmentController@deleteDepartment')->name('deletedepartments')->middleware('check');
 Route::post('/editdepartment', 'DepartmentController@editDepartment')->name('editdepartments')->middleware('check');
+Route::post('/editteam', 'TeamController@editTeam')->name('editteams')->middleware('check');
 Route::get('/getteams', 'TeamController@getTeams')->name('getteams');
 Route::get('/getroles', 'RoleController@getRoles')->name('getroles');
 Route::post('/deleteuser', 'UsersController@delete')->name('deleteusers')->middleware('check');
+Route::post('/deleteteam', 'TeamController@deleteTeam')->name('deleteteams')->middleware('check');
 Route::get('/getdepartments', 'DepartmentController@getDepartments')->name('getdepartments');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('check');

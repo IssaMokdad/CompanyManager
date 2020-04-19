@@ -25,7 +25,7 @@ class DeleteDepartmentForm extends React.Component {
             .then((willDelete) => {
                 if (willDelete) {
                     let data = {
-                        'id': this.state.department_id,
+                        'department_id': this.state.department_id,
                     }
                     this.props.fetchRequest('deletedepartment', 'POST', data).then(data => {
                         if (data.success == 'success') {
