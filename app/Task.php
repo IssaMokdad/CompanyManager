@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     protected $fillable = [
-        'team_id','task_title','task_description','id'
+        'team_id','task_title','task_description','user_id'
     ];
     public function team()
     {

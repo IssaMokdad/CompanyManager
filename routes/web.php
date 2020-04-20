@@ -20,10 +20,13 @@ Route::get('/', function () {
 Auth::routes(['verify'=>true]);
 Route::get('/getuserdata', 'UsersController@getUserData')->name('getuserdata');
 Route::get('/getusers', 'UsersController@getUsers')->name('getusers');
+Route::get('/getusersdepartment', 'UsersController@getUsersDepartment')->name('getusersdepartment');
 Route::post('/editusers', 'UsersController@editUsers')->name('editusers')->middleware('check');
 Route::post('/addusers', 'UsersController@addUsers')->name('addusers')->middleware('check');
 Route::post('/adddepartment', 'DepartmentController@addDepartment')->name('adddepartments')->middleware('check');
 Route::post('/addteam', 'TeamController@addTeam')->name('addteams')->middleware('check');
+Route::post('/addtask', 'TaskController@addTask')->name('addtasks')->middleware('checkTM');
+Route::get('/gettasks', 'TaskController@getTask')->name('gettasks')->middleware('checkTM');
 Route::post('/deletedepartment', 'DepartmentController@deleteDepartment')->name('deletedepartments')->middleware('check');
 Route::post('/editdepartment', 'DepartmentController@editDepartment')->name('editdepartments')->middleware('check');
 Route::post('/editteam', 'TeamController@editTeam')->name('editteams')->middleware('check');

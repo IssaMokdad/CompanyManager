@@ -13,6 +13,7 @@ class UsersController extends Controller
     {
     $this->middleware('auth');
     $this->middleware('check')->only(['getUsers']);
+    $this->middleware('checkTM')->only(['getUsersDepartment']);
     }
     public function getUsers()
     {
@@ -22,6 +23,19 @@ class UsersController extends Controller
             ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
             ->select('department_name','users.department_id','role_type','role_id','teams.team_name', 'users.team_id','users.email', 'users.first_name', 'users.id', 'users.last_name')
             ->where('users.company_id', Auth::user()->company_id)
+            ->paginate(6);
+        return response()->json($users);
+    }
+
+
+    public function getUsersDepartment()
+    {
+        $users = DB::table('users')
+            ->select('users.email', 'users.first_name', 'users.id', 'users.last_name')
+            ->where('users.company_id', Auth::user()->company_id)
+            ->where('users.department_id', Auth::user()->department_id)
+            ->where('users.team_id', Auth::user()->team_id)
+            ->where('users.role_id', 4)
             ->paginate(6);
         return response()->json($users);
     }
