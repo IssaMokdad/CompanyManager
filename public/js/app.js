@@ -106081,8 +106081,8 @@ var AddUserForm = /*#__PURE__*/function (_React$Component) {
       email: '',
       role_id: '',
       first_name: '',
-      department_id: '',
-      team_id: ''
+      department_id: null,
+      team_id: null
     };
     _this.handleChangeEmail = _this.handleChangeEmail.bind(_assertThisInitialized(_this));
     _this.handleChangePassword = _this.handleChangePassword.bind(_assertThisInitialized(_this));
@@ -106197,8 +106197,8 @@ var AddUserForm = /*#__PURE__*/function (_React$Component) {
             });
 
             _this3.setState({
-              department_id: '',
-              team_id: '',
+              department_id: null,
+              team_id: null,
               password: '',
               password2: '',
               last_name: '',
@@ -106279,6 +106279,7 @@ var AddUserForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OptionsInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        required: "notRequired",
         nameDatabaseDescription: "department_name",
         unitDescription: "department",
         unitDescriptionPlural: "departments",
@@ -106287,6 +106288,7 @@ var AddUserForm = /*#__PURE__*/function (_React$Component) {
         selected: this.state.department,
         unit: this.props.department
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OptionsInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        required: "notRequired",
         nameDatabaseDescription: "team_name",
         unitDescription: "team",
         unitDescriptionPlural: "teams",
@@ -108282,7 +108284,11 @@ function OptionsInput(props) {
     "data-error": "wrong",
     "data-success": "right",
     htmlFor: "orangeForm-name"
-  }, " ", props.unitDescriptionPlural.charAt(0).toUpperCase() + props.unitDescriptionPlural.slice(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+  }, " ", props.unitDescriptionPlural.charAt(0).toUpperCase() + props.unitDescriptionPlural.slice(1)), props.required === 'notRequired' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    onChange: handleChange,
+    value: props.selected,
+    className: "form-control validate"
+  }, content) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     onChange: handleChange,
     value: props.selected,
     className: "form-control validate",

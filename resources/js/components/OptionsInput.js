@@ -29,9 +29,11 @@ function OptionsInput(props) {
 
         <div className={props.classes}>
             <label data-error="wrong" data-success="right" htmlFor="orangeForm-name"> {props.unitDescriptionPlural.charAt(0).toUpperCase() + props.unitDescriptionPlural.slice(1)}</label>
-            <select onChange={handleChange} value={props.selected} className="form-control validate" required>
+            {props.required==='notRequired' ? <select onChange={handleChange} value={props.selected} className="form-control validate">
             {content}
-            </select>
+            </select> : <select onChange={handleChange} value={props.selected} className="form-control validate" required>
+            {content}
+            </select>}
         </div>
     )
 }

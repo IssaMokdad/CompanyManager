@@ -7,7 +7,7 @@ import Modal from './Modal';
 class AddUserForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { image: '', department: '', teamGroup: '', role_type: '', team: '', password: '', password2: '', last_name: '', email: '', role_id: '', first_name: '', department_id: '', team_id: '' };
+        this.state = { image: '', department: '', teamGroup: '', role_type: '', team: '', password: '', password2: '', last_name: '', email: '', role_id: '', first_name: '', department_id: null, team_id: null };
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleChangePassword2 = this.handleChangePassword2.bind(this);
@@ -72,7 +72,7 @@ class AddUserForm extends React.Component {
                             icon: "success",
                         });
                         this.setState({
-                            department_id: '', team_id: '',password: '', password2: '', last_name: '', email: '', role_type: '', first_name: '', department: '', team: ''
+                            department_id: null, team_id: null,password: '', password2: '', last_name: '', email: '', role_type: '', first_name: '', department: '', team: ''
                         })
     
                         // this.fileInput.current.value = null
@@ -115,8 +115,8 @@ class AddUserForm extends React.Component {
                             <Input type='password' label='Repeat Password' value={this.state.password2} handleChange={this.handleChangePassword2} />
                         </div>
                         <div className='col'>
-                            <OptionsInput nameDatabaseDescription='department_name' unitDescription='department' unitDescriptionPlural='departments' classes='md-form mb-3' handleChange={this.handleChangeDepartment} selected={this.state.department} unit={this.props.department} />
-                            <OptionsInput nameDatabaseDescription='team_name' unitDescription='team' unitDescriptionPlural='teams' classes='md-form mb-3' handleChange={this.handleChangeTeam} selected={this.state.team} unit={this.state.teamGroup} />
+                            <OptionsInput required='notRequired' nameDatabaseDescription='department_name' unitDescription='department' unitDescriptionPlural='departments' classes='md-form mb-3' handleChange={this.handleChangeDepartment} selected={this.state.department} unit={this.props.department} />
+                            <OptionsInput required='notRequired' nameDatabaseDescription='team_name' unitDescription='team' unitDescriptionPlural='teams' classes='md-form mb-3' handleChange={this.handleChangeTeam} selected={this.state.team} unit={this.state.teamGroup} />
                             <OptionsInput nameDatabaseDescription='role_type' unitDescription='role' unitDescriptionPlural='roles' classes='md-form mb-3' handleChange={this.handleChangeRole} selected={this.state.role_type} unit={this.props.role} />
                             {/* <label>Attach a photo</label><input ref={this.fileInput} type='file' /> */}
                         </div>

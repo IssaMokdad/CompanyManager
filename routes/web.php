@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 Route::get('/getuserdata', 'UsersController@getUserData')->name('getuserdata');
 Route::get('/getusers', 'UsersController@getUsers')->name('getusers');
 Route::post('/editusers', 'UsersController@editUsers')->name('editusers')->middleware('check');

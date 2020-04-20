@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-    $this->middleware('auth');
+        $this->middleware('auth'); 
     
     $this->middleware('check')->only('indexOwner');
     $this->middleware('checkDM')->only('indexDepartment');

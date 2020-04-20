@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
-<h1>Team</h1>
+<div id='CompanyManager'></div>
 @endsection
