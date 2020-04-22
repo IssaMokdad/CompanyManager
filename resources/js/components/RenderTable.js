@@ -157,6 +157,8 @@ class RenderTable extends React.Component {
                     </tbody>
                 </table>       
                     <Paginator handlePageChange={this.handlePageChange} last_page={this.props.last_page} total={this.props.total} activePage={this.state.activePage}/>
+                <EditUserForm role_id={this.state.role_id} role_type={this.state.role_type} departmentSelected={this.state.department_name} last_name={this.state.last_name} first_name={this.state.first_name} user_id={this.state.user_id} email={this.state.email} team_id={this.state.team_id} team_name={this.state.team_name} initializeData={this.props.initializeData} fetchRequest={this.props.fetchRequest} department_id={this.state.departmentId} role={this.props.role} department={this.props.department} />
+               
             </Fragment>
         )
     }
