@@ -26,6 +26,8 @@ class LoginController extends Controller
      *
      * @var string
      */
+
+
     public function redirectTo()
     {
 
@@ -33,20 +35,35 @@ class LoginController extends Controller
         $role = Auth::user()->role_id;
 
         // Check user role
-        switch ($role) {
-            case '1':
-                return '/dashboard';
-                break;
-            case '2':
-                return '/department';
-                break;
-            case '3':
-                return '/team';
-                break;
-            case '4':
-                return '/employee';
-                break;
+
+        if($role===1){
+            return route ('dashboard');
         }
+        elseif($role===2){
+            return route ('department');
+        }
+        elseif($role===3){
+            return route ('team');
+        }
+        else{
+            return route ('employee');
+        }
+        // switch ($role) {
+            
+        //     case 1:
+        //         dd($role);
+        //         return route ('dashboard');
+        //         break;
+        //     case 2:
+        //         return route('department');
+        //         break;
+        //     case 3:
+        //         return route('team');
+        //         break;
+        //     case 4:
+        //         return route('employee');
+        //         break;
+        // }
     }
 
     /**

@@ -71,10 +71,24 @@
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
-            <a href="{{ url('/dashboard') }}">Home</a>
+            @if(Auth::user()->role_id===1){
+                <a href="{{ url('/dashboard') }}">Home</a>
+            }
+            @endif
+            @if(Auth::user()->role_id===2){
+                <a href="{{ url('/department') }}">Home</a>
+            }
+            @endif
+            @if(Auth::user()->role_id===3){
+                <a href="{{ url('/team') }}">Home</a>
+            }
+            @endif
+            @if(Auth::user()->role_id===4){
+                <a href="{{ url('/employee') }}">Home</a>
+            }
+            @endif
             @else
             <a href="{{ route('login') }}">Login</a>
-
             @if (Route::has('register'))
             <a href="{{ route('register') }}">Register</a>
             @endif

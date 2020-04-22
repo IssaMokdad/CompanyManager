@@ -108582,7 +108582,7 @@ function NavBar(props) {
     className: "navbar-nav ml-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
-  }, props.children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null)));
+  }, props.children)));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (NavBar);
@@ -109107,23 +109107,6 @@ var RenderTable = /*#__PURE__*/function (_React$Component) {
         last_page: this.props.last_page,
         total: this.props.total,
         activePage: this.state.activePage
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditUserForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        role_id: this.state.role_id,
-        role_type: this.state.role_type,
-        departmentSelected: this.state.department_name,
-        last_name: this.state.last_name,
-        first_name: this.state.first_name,
-        user_id: this.state.user_id,
-        email: this.state.email,
-        team_id: this.state.team_id,
-        team_name: this.state.team_name,
-        initializeData: this.props.initializeData,
-        fetchRequest: this.props.fetchRequest,
-        department_id: this.state.departmentId,
-        role: this.props.role,
-        department: this.props.department
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ImageForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        imagePath: this.state.imagePath
       }));
     }
   }]);

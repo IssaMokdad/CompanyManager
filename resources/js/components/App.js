@@ -10,7 +10,6 @@ import FormsPopUpButtons from './FormsPopUpButtons';
 import RenderTable from './RenderTable';
 import { Fragment } from 'react';
 import DatePicker from './DatePicker';
-
 class App extends React.Component {
     constructor(props) {
         super(props)

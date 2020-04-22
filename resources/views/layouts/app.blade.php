@@ -21,6 +21,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-chartjs-2/2.9.0/react-chartjs-2.min.js" defer></script>
+    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js" defer></script>
+
     {{-- <script src='static/js/chart.js'></script> --}}
     <!-- Fonts -->
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">

@@ -8,7 +8,7 @@ function NavBar(props) {
                 <li className="nav-item">
                     {props.children}
                 </li>
-                <li></li>
+                
             </ul>
         </nav>
     )
